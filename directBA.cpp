@@ -154,12 +154,29 @@ public:
         J_pixel_xi(1,3) = -fy*(1+y*y/zz);
         J_pixel_xi(1,4) = fy*x*y/zz;
         J_pixel_xi(1,5) = fy*x/z;
+        //partial uv to pcam
+        Eigen::Matrix<double,2,3> J_pixel_pcam;
+        J_pixel_pcam(0,0) = fx/z;
+        J_pixel_pcam(0,1) = 0;
+        J_pixel_pcam(0,2) = -fx*x/zz;
+        J_pixel_pcam(1,0) = 0;
+        J_pixel_pcam(1,1) = fy/z;
+        J_pixel_pcam(1,2) = -fy*y/zz;
+        //partial pcam to pworld
+        Eigen::Matrix3d J_pcam_pworld;
+        J_pcam_pworld = v2->estimate().so3().matrix();
+
         //image gradidents
         double u = fx*(pcam(0)/pcam(2))+cx, v = fy*(pcam(1)/pcam(2))+cy;
-        for(int x = -2; x < 2; x++)
+
+        for(int x = -2,i = 0; x < 2; x++)
             for(int y = -2; y < 2; y++){
                 Eigen::Matrix<double,1,2> J_img_pixel;
-
+                J_img_pixel(0,0) = -(GetPixelValue(targetImg,u+x+1,v+y)-GetPixelValue(targetImg,u+x-1,v+y))/2;
+                J_img_pixel(0,1) = -(GetPixelValue(targetImg,u+x,v+y+1)-GetPixelValue(targetImg,u+x,v+y-1))/2;
+                _jacobianOplusXj.block(i,0,1,6) = J_img_pixel*J_pixel_xi;
+                _jacobianOplusXi.block(i,0,1,3) = J_img_pixel*J_pixel_pcam*J_pcam_pworld;
+                i++;
             }
 
 
