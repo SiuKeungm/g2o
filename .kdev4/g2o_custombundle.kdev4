@@ -1,0 +1,36 @@
+[Buildset]
+BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x01\x00\x00\x00 \x00g\x002\x00o\x00_\x00c\x00u\x00s\x00t\x00o\x00m\x00b\x00u\x00n\x00d\x00l\x00e)
+
+[CMake]
+Build Directory Count=1
+Current Build Directory Index=0
+ProjectRootRelative=./
+
+[CMake][CMake Build Directory 0]
+Build Directory Path=file:///home/daohang/slambook/ch10/g2o_custombundle/build
+Build Type=Debug
+CMake Binary=file:///usr/bin/cmake
+Environment Profile=
+Extra Arguments=
+Install Directory=file:///usr/local
+
+[Launch]
+Launch Configurations=Launch Configuration 0
+
+[Launch][Launch Configuration 0]
+Configured Launch Modes=execute
+Configured Launchers=nativeAppLauncher
+Name=g2o_customBundle
+Type=Native Application
+
+[Launch][Launch Configuration 0][Data]
+Arguments=
+Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x02\x00\x00\x00 \x00g\x002\x00o\x00_\x00c\x00u\x00s\x00t\x00o\x00m\x00b\x00u\x00n\x00d\x00l\x00e\x00\x00\x00 \x00g\x002\x00o\x00_\x00c\x00u\x00s\x00t\x00o\x00m\x00B\x00u\x00n\x00d\x00l\x00e)
+Dependency Action=Build
+EnvironmentGroup=default
+Executable=file:///home/daohang/slambook/ch10/g2o_custombundle/
+External Terminal=konsole --noclose --workdir %workdir -e %exe
+Project Target=g2o_custombundle,g2o_customBundle
+Use External Terminal=false
+Working Directory=
+isExecutable=false
